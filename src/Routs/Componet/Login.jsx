@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContex } from '../../Provider/AuthProvider';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
+
+  const {signIn,loading}= useContext(AuthContex)
  const handleLogin = (event)=>{
     event.preventDefault()
     const form = event.target;
     const email = form.email.value
     const password = form.password.value
     console.log(email,password)
+    signIn(email,password)
+    .then(res=>{
+      console.log(res.user)
+    })
  }
+
 
     return (
         <div className="hero min-h-screen bg-base-200">
@@ -34,8 +43,10 @@ const Login = () => {
           </label>
         </div>
         <div className="form-control mt-6">
+        <p>are you new? <Link className='text-red-500' to='/signup'>Please SignUp</Link></p>
          <input type="submit" className='btn btn-primary' value="Login" />
         </div>
+        
       </form>
     </div>
   </div>
