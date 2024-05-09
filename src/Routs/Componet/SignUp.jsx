@@ -1,8 +1,12 @@
 import React, { useContext } from 'react';
 import { AuthContex } from '../../Provider/AuthProvider';
+import {  useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
-    const { creatuser,loading } = useContext(AuthContex)
+    const { user,creatuser,loading } = useContext(AuthContex)
+   
+    const navigate = useNavigate()
 
   const handleSignup = (event)=>{
     event.preventDefault()
@@ -13,7 +17,18 @@ const SignUp = () => {
       creatuser(email,password)
       .then(userCredential=>{
         const user = userCredential.user;
-        console.log(user)
+         console.log(user.email)
+          if(user){
+            Swal.fire({
+              position: "top-center",
+              icon: "success",
+              title: "Your Account Create",
+              showConfirmButton: false,
+              timer: 1500
+            });
+            navigate('/')
+          }
+        
       })
       .catch((error) => {
         const errorCode = error.code;
