@@ -1,25 +1,64 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContex } from '../../Provider/AuthProvider';
-import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { Link,  useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 
 const Login = () => {
   const location = useLocation()
   console.log(location)
   const navigate = useNavigate()
+  const [token,settoken] = useState([])
 
-  const {signIn,loading}= useContext(AuthContex)
+  const {signIn}= useContext(AuthContex)
  const handleLogin = (event)=>{
     event.preventDefault()
     const form = event.target;
     const email = form.email.value
     const password = form.password.value
-    console.log(email,password)
     signIn(email,password)
     .then(res=>{
-      const user = res.user
-       navigate(location?.state ? location?.state : '/')
+      const logInuser = res.user;
+      const emailUser = {email,password}
+
+      axios.post('http://localhost:5000/jwt',emailUser,{
+        withCredentials: true
+      })
+      
+      .then(res=>{
+        console.log(res.data)
+        if(res.data.success){
+          navigate(location?.state ? location?.state : '/')
+        }
+      
+      })
+      .catch(error=>console.log(error))
     })
  }
+
+  
+
+    
+   
+
+        // fetch("http://localhost:5000/jwt",{
+    //   method: 'POST',
+    //   headers: {
+    //     'content-type' : 'application/json'
+    //   },
+    //   body: JSON.stringify(data)
+    // })
+    // .then(res=>res.json())
+    // .then(ddd=> settoken(ddd.token))
+    // signIn(email,password)
+    // .then(res=>{
+    //   const user = res.user
+ 
+    //  //  navigate(location?.state ? location?.state : '/')
+    // })
+    
+ 
+  
 
 
     return (
