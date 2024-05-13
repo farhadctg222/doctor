@@ -31,7 +31,7 @@ const Book = () => {
         }
         console.log(order)
 
-        fetch('http://localhost:5000/booking',{
+        fetch('https://doctor-hazel-rho.vercel.app/booking',{
             method: 'POST',
             headers:{
                 'content-type': 'application/json'
@@ -65,7 +65,7 @@ const Book = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Email</span>
+                  <span className="label-text">Service Name</span>
                 </label>
                 <input type="text" defaultValue={title} name='name' className="input input-bordered"  />
               </div>
@@ -78,9 +78,9 @@ const Book = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Price</span>
+                  <span className="label-text">Date</span>
                 </label>
-                <input type="date" placeholder={price} name='date'  className="input input-bordered"  />
+                <input type="date"  name='date'  className="input input-bordered"  />
                 
               </div>
               <div className="form-control mt-6">

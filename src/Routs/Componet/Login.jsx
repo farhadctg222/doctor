@@ -21,7 +21,7 @@ const Login = () => {
       const logInuser = res.user;
       const emailUser = {email,password}
 
-      axios.post('http://localhost:5000/jwt',emailUser,{
+      axios.post('https://doctor-hazel-rho.vercel.app/jwt',emailUser,{
         withCredentials: true
       })
       
@@ -41,7 +41,7 @@ const Login = () => {
     
    
 
-        // fetch("http://localhost:5000/jwt",{
+        // fetch("https://doctor-hazel-rho.vercel.app//jwt",{
     //   method: 'POST',
     //   headers: {
     //     'content-type' : 'application/json'

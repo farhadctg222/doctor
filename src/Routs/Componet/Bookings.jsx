@@ -11,7 +11,7 @@ const Bookings = () => {
     const handleDelete = id=>{
       const proced = confirm('are you delete naw')
       if(proced){
-        fetch(`http://localhost:5000/bookings/${id}`,{
+        fetch(`https://doctor-hazel-rho.vercel.app/bookings/${id}`,{
           method: 'DELETE',
         })
         .then(res=>res.json())
@@ -23,7 +23,7 @@ const Bookings = () => {
       }
     }
     const handleconfirm = id=>{
-      fetch(`http://localhost:5000/bookings/${id}`,{
+      fetch(`https://doctor-hazel-rho.vercel.app/bookings/${id}`,{
         method: 'PATCH',
         headers: {
           'content-type': 'application/json'
@@ -44,7 +44,7 @@ const Bookings = () => {
       })
     }
 
-    const url = `http://localhost:5000/book?email=${user.email}`
+    const url = `https://doctor-hazel-rho.vercel.app/book?email=${user.email}`
      axios.get(url,{
       withCredentials:true
      })
@@ -65,7 +65,7 @@ const Bookings = () => {
         <th>Job</th>
         <th>Favorite Color</th>
         <th></th>
-      </tr>
+      </tr>y
     </thead>
 
             {
